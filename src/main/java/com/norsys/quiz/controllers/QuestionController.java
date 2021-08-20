@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import com.norsys.quiz.oi.entities.Question;
 
 import com.norsys.quiz.services.servicesInterfaces.QuestionService;
 import com.norsys.quiz.shared.dto.QuestionDto;
+import com.norsys.quiz.ui.model.response.AnswerModelResponse;
 
 
 @CrossOrigin("*")
@@ -57,6 +59,27 @@ public class QuestionController {
 	public String deleteQuestionById(@PathVariable("id") long id) {
 		
 		return questionService.deleteQuestionById(id);
+	}
+	
+	@PutMapping("updateQuestion/{id}")
+	public ResponseEntity updateQuestion(@PathVariable("id") long id,@RequestBody QuestionDto question) {
+		System.out.println(id);
+		System.out.println(question);
+		try {
+			return new ResponseEntity(questionService.updateQuestion(id, question),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	@PostMapping("CalculateScore/{id}")
+	public ResponseEntity calculateScore(@PathVariable("id")long id,@RequestBody List<AnswerModelResponse> answers) {
+		System.out.println(answers);
+		try {
+			return new ResponseEntity(questionService.calculeScore(id, answers),HttpStatus.OK);
+		} catch (Exception e) {
+			e.getMessage();
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.norsys.quiz.shared.dto;
 
-import java.util.Set;
+import java.util.List;
 
 import com.norsys.quiz.ui.model.response.AnswerModelResponse;
 import com.norsys.quiz.ui.model.response.QuizModelResponse;
@@ -8,16 +8,17 @@ import com.norsys.quiz.ui.model.response.QuizModelResponse;
 
 public class QuestionDto {
 
+	
 	private long Id;
     private String questionContent;
     private QuizModelResponse quiz;
-    private Set<AnswerModelResponse> answers;
+    private List<AnswerModelResponse> answers;
     
     
-    public Set<AnswerModelResponse> getAnswers() {
+    public List<AnswerModelResponse> getAnswers() {
 		return answers;
 	}
-	public void setAnswers(Set<AnswerModelResponse> answers) {
+	public void setAnswers(List<AnswerModelResponse> answers) {
 		this.answers = answers;
 	}
 	public long getId() {
@@ -37,6 +38,11 @@ public class QuestionDto {
 	}
 	public void setQuiz(QuizModelResponse quiz) {
 		this.quiz = quiz;
+	}
+	@Override
+	public String toString() {
+		return "QuestionDto [Id=" + Id + ", questionContent=" + questionContent + ", answers="
+				+ answers + "]";
 	}
 	
 }

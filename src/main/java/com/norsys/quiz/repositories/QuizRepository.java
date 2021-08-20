@@ -6,4 +6,6 @@ import com.norsys.quiz.oi.entities.Quiz;
 
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
 	Quiz findQuizByTitle(String title);
+
+	Object findAllByOrderByIdAsc();
 }

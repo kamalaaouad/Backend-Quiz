@@ -2,6 +2,7 @@ package com.norsys.quiz.ui.model.response;
 
 public class AnswerModelResponse {
 
+	
 	private long Id;
     private String answerContent;
     private boolean correct;
@@ -22,5 +23,9 @@ public class AnswerModelResponse {
 	}
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
+	}
+	@Override
+	public String toString() {
+		return "AnswerModelResponse [Id=" + Id + ", answerContent=" + answerContent + ", correct=" + correct + "]";
 	}
 }
